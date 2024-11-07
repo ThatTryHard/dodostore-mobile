@@ -74,13 +74,13 @@
     - **Mengurangi *Render* Ulang**: Karena *Flutter* mengetahui bahwa *widget* `const` tidak akan berubah, *widget* tersebut tidak perlu diperiksa atau di*render* ulang, sehingga aplikasi menjadi lebih efisien.
     - **Konsistensi**: Dengan `const`, kita dapat menjamin bahwa elemen-elemen tertentu di aplikasi tidak akan berubah karena *Flutter* akan memberi peringatan jika ada upaya untuk mengubahnya.
 
-    `const` digunakan pada widget yang kontennya tidak berubah, seperti teks yang statis, ikon tetap, atau dekorasi tertentu serta pada nilai atau variabel yang tetap sepanjang waktu. Sebaiknya `const` tidak digunakan ketika *widget* atau nilai tersebut perlu diperbarui secara dinamis berdasarkan input atau *state* pengguna, seperti dalam *list* yang interaktif atau teks yang berubah-ubah.
+    `const` digunakan pada widget yang kontennya tidak berubah, seperti teks yang statis, ikon tetap, atau dekorasi tertentu serta pada nilai atau variabel yang tetap sepanjang waktu misalnya seperti `const int maxItems = 5;`. Sebaiknya jangan gunakan `const` jika konten *widget* atau nilai tersebut bersifat dinamis atau tergantung pada interaksi pengguna. Misalnya, teks yang berubah berdasarkan *input* atau daftar yang dapat diperbarui secara dinamis. Penggunaan `const` dalam konteks dinamis akan menyebabkan *error* karena *Flutter* tidak dapat mengubah nilai yang telah ditandai sebagai konstan.
 
 * Jelaskan dan bandingkan penggunaan `Column` dan `Row` pada *Flutter*. Berikan contoh implementasi dari masing-masing *layout widget* ini!
 
-    Column dan Row adalah widget yang digunakan untuk menyusun elemen-elemen anaknya secara vertikal (Column) atau horizontal (Row). *Layout widget* dalam *Flutter* memiliki beberapa elemen seperti `mainAxisAlignment` dapat digunakan untuk mengatur posisi elemen-elemen dalam `Column` atau `Row`, seperti `center`, `spaceBetween`, atau `spaceAround`.
+    `Column` dan `Row` adalah dua *widget* tata letak dasar di *Flutter* yang memungkinkan kita menyusun *widget* anak secara vertikal dan horizontal.
 
-    - Column: Menyusun elemen secara vertikal (dari atas ke bawah). Biasa digunakan untuk tata letak konten yang berurutan secara vertikal. Contohnya sebagai berikut:
+    - `Column`: Mengatur *widget* anak dalam susunan vertikal, dari atas ke bawah. *Widget* ini cocok untuk tata letak seperti daftar atau formulir yang membutuhkan susunan dari atas ke bawah. Contohnya sebagai berikut:
         ```dart
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -91,8 +91,11 @@
             ],
         )
         ```
+        Properti yang penting pada saat menggunakan `Column` adalah:
+        - `mainAxisAlignment`: Mengatur posisi *widget* anak di sepanjang sumbu utama (vertikal), seperti `MainAxisAlignment.center`, `spaceBetween`, atau `spaceAround`.
+        - `crossAxisAlignment`: Mengatur posisi *widget* anak di sepanjang sumbu silang (horizontal), seperti `CrossAxisAlignment.start`, `center`, atau `end`.
 
-    - Row: Menyusun elemen secara horizontal (dari kiri ke kanan). Digunakan ketika elemen perlu ditampilkan sejajar dalam satu baris. Contohnya sebagai berikut:
+    - `Row`: Menyusun *widget* anak dalam susunan horizontal, dari kiri ke kanan. Cocok untuk menampilkan elemen yang harus sejajar seperti tombol navigasi atau ikon yang bersebelahan. Contohnya sebagai berikut:
         ```dart
         Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -103,12 +106,79 @@
             ],
         )
         ```
+        Properti yang penting pada saat menggunakan `Row` adalah:
+        - `mainAxisAlignment`: Mengatur posisi *widget* anak di sepanjang sumbu utama (horizontal), seperti `MainAxisAlignment.spaceEvenly`, `center`, atau `end`.
+        - `crossAxisAlignment`: Mengatur posisi *widget* anak di sepanjang sumbu silang (vertikal), seperti `CrossAxisAlignment.start`, `center`, atau `stretch`.
+    
+    **Perbedaan Utama**: `Column` menyusun elemen secara vertikal sedangkan `Row` menyusun elemen secara horizontal. Pemilihan keduanya tergantung pada kebutuhan tata letak aplikasi; jika elemen perlu disusun sejajar dari atas ke bawah, gunakan `Column`, dan jika perlu dari kiri ke kanan, gunakan `Row`.
 
 * Sebutkan apa saja elemen *input* yang kamu gunakan pada halaman *form* yang kamu buat pada tugas kali ini. Apakah terdapat elemen input *Flutter* lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+    **Elemen Input yang Digunakan**
+    - `TextFormField` - Terdapat tiga `TextFormField` yang digunakan untuk menerima input dari pengguna:
+        - *Product*: *Field* ini menerima nama produk. *Validator* memastikan bahwa input tidak kosong.
+        - *Amount*: *Field* ini menerima jumlah produk dalam bentuk angka. *Validator* mengecek agar *field* ini tidak kosong dan memastikan input berupa angka.
+        - *Description*: *Field* ini menerima deskripsi produk. *Validator* memastikan bahwa input tidak kosong.
+    - `ElevatedButton` - Sebuah tombol dengan label *Save* yang berfungsi untuk menyimpan data setelah semua *field* validasi terpenuhi. Ketika ditekan, tombol ini memicu validasi *form* dan menampilkan `AlertDialog` jika data berhasil disimpan.
 
+    **Elemen Input Lain yang Tidak Digunakan**
+    - Selain elemen-elemen di atas, *Flutter* menyediakan beberapa elemen input lain yang belum diimplementasikan dalam *form* ini. Berikut adalah beberapa elemen input tersebut beserta penjelasan kegunaannya:
+
+    - `DropdownButtonFormField` - Digunakan untuk menampilkan daftar pilihan dalam bentuk dropdown. Contohnya, elemen ini bisa digunakan jika ingin menambahkan kategori produk pada form.
+
+    - `Checkbox` - Elemen ini menampilkan kotak centang untuk 2 pilihan misalnya ya/tidak. Misalnya, bisa digunakan untuk meminta persetujuan pengguna terhadap syarat dan ketentuan.
+
+    - `Switch` - Mirip dengan `Checkbox`, tetapi memiliki tampilan toggle (*switch*) untuk mengaktifkan atau menonaktifkan suatu opsi. `Switch` cocok untuk pengaturan yang melibatkan pilihan aktif/tidak aktif, misalnya untuk menandai apakah produk dalam stok atau tidak.
+
+    - `Radio` - Elemen input ini cocok untuk pilihan terbatas yang bersifat eksklusif, artinya hanya satu pilihan yang dapat dipilih dalam satu kelompok. Sebagai contoh, bisa digunakan untuk memilih ukuran produk (misalnya S, M, L) di mana hanya satu ukuran dapat dipilih.
+
+    - `Slider` - Digunakan untuk mengatur nilai dari suatu rentang tertentu dengan menggeser kursor. Contohnya, elemen ini bisa digunakan untuk input harga dengan rentang minimum dan maksimum.
+
+    - `DatePicker` - *Flutter* menyediakan `showDatePicker()` sebagai cara untuk menerima input tanggal dari pengguna. Ini bisa digunakan jika ingin menambahkan tanggal kedaluwarsa produk.
+
+    - `TimePicker` - Digunakan untuk menerima input waktu, cocok untuk aplikasi yang membutuhkan pengaturan waktu tertentu.
+
+    - `TextField` dengan Tipe Keyboard Khusus - Meskipun sudah digunakan untuk angka dalam `TextFormField` di atas, *Flutter* memungkinkan pemilihan tipe keyboard lain seperti *e-mail*, telepon, atau password agar lebih sesuai dengan tipe data yang diinginkan.
+
+    Elemen-elemen tambahan di atas tidak digunakan dalam *form* ini karena *form* hanya memerlukan input dasar berupa teks dan angka. Namun, elemen-elemen tersebut bisa dipertimbangkan jika *form* membutuhkan variasi input lebih kompleks atau sesuai dengan skenario input yang berbeda.
 
 * Bagaimana cara kamu mengatur tema (*theme*) dalam aplikasi *Flutter* agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+    Saya mengatur tema secara konsisten di *Flutter* untuk menjaga tampilan aplikasi tetap harmonis dan profesional. Dalam *Flutter*, tema diatur melalui `ThemeData` yang diterapkan pada `MaterialApp`. `ThemeData` memungkinkan kita mengatur warna utama, warna aksen, gaya teks, ikon, serta elemen-elemen lain yang sering digunakan di aplikasi. Saya mengatur tema dengan cara:
+    - Dalam `MaterialApp`, tambahkan properti theme dan inisialisasikan dengan `ThemeData`.
+    - Tema saya diatur dalam `main.dart` sebagai berikut:
+        ```dart
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.cyan)
+                .copyWith(secondary: Colors.grey[400]),
+            ),
+        ```
+        - `ColorScheme`: Tema ini menggunakan `ColorScheme` yang dibuat dengan `fromSwatch`, di mana `primarySwatch` ditetapkan sebagai `Colors.cyan`. Hal ini menentukan skema warna utama untuk aplikasi, memberikan kesan konsisten pada elemen yang menggunakan warna utama.
+        - `copyWith(secondary: Colors.grey[400])`: Fungsi `copyWith` digunakan untuk menambahkan atau mengubah warna sekunder (*secondary color*). Dalam hal ini, *secondary* diatur ke `Colors.grey[400]`. Warna sekunder ini dapat digunakan untuk elemen yang memerlukan aksen atau warna pelengkap, seperti ikon atau tombol sekunder.
+    - Untuk implementasinya saya menambahkan atribut `backgroundColor: Theme.of(context).colorScheme.primary` untuk tiap `AppBar` untuk tiap *script* yang saya gunakan hingga saat ini.
+
 * Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada *Flutter*?
+    *Flutter* menggunakan `Navigator` sebagai mekanisme utama untuk navigasi antara halaman. `Navigator` berfungsi sebagai `stack` yang memungkinkan kita menambahkan halaman baru di atas halaman sebelumnya atau kembali ke halaman sebelumnya. Cara Menangani Navigasi yaitu dengan `Navigator`:
+    - `Navigator.push`: Digunakan untuk menambahkan halaman baru ke `stack`. Biasanya, `Navigator.push` menerima context dan route sebagai parameter, di mana route mendefinisikan halaman baru yang akan ditampilkan.
+    - `Navigator.pop`: Menghapus halaman yang ada di atas `stack` dan mengembalikan pengguna ke halaman sebelumnya. Biasanya dipanggil ketika pengguna ingin kembali atau menyelesaikan proses di halaman tertentu.
+
+    Contoh implementasinya, dapat dilihat dari berkas `left_drawer.dart` berikut:
+    ```dart
+    ListTile(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text('Halaman Utama'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  ));
+            },
+          ),
+    ```
+    Dengan ini, `ListTile` digunakan untuk memicu navigasi ketika item ditekan. Fungsi `Navigator.pushReplacement` digunakan untuk menggantikan halaman yang sedang aktif dengan halaman baru tanpa menyimpan halaman sebelumnya di dalam `stack`.
+    - `Navigator.pop(context)`: Langkah ini menutup *drawer* sebelum melanjutkan ke halaman baru. Hal ini penting untuk menjaga antarmuka tetap rapi dan menghindari menampilkan *drawer* bersamaan dengan halaman baru.
+    - `Navigator.pushReplacement`: Metode ini digunakan untuk mengganti halaman saat ini dengan halaman yang baru. Fungsi `pushReplacement` tidak menambahkan halaman ke dalam `stack` navigasi, melainkan menggantikan halaman yang ada, sehingga pengguna tidak dapat kembali ke halaman sebelumnya. Ini sangat bermanfaat untuk navigasi utama.
+
 
 ## Getting Started
 
