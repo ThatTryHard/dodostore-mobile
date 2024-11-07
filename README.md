@@ -63,6 +63,53 @@
         - "Kamu telah menekan tombol Logout" ketika tombol `Logout` ditekan.
 
         Pada blok `Widget build`, tambahkan class `SnackBar` yang berfungsi untuk menampilkan pesan sesuai tombol yang ditekan. Agar lebih interaktif, gunakan `InkWell` untuk memberikan efek saat tombol ditekan dan atur event listener dengan menambahkan sintaks `onTap` yang membungkus `SnackBar`. Setiap kali tombol ditekan, `ScaffoldMessenger` akan menampilkan `SnackBar` dengan pesan yang menyesuaikan nama tombol tersebut. Misalnya, ketika tombol "Lihat Daftar Produk" ditekan, pesan "Kamu telah menekan tombol Lihat Daftar Produk" akan muncul. Sesuaikan konten dan warna latar `SnackBar` untuk memperindah tampilannya, dan gunakan tag `${item.name}` agar pesan dinamis sesuai tombol yang ditekan.
+
+## Tugas 8
+* Apa kegunaan `const` di *Flutter*? Jelaskan apa keuntungan ketika menggunakan `const` pada kode *Flutter*. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+
+    `const` digunakan untuk mendefinisikan nilai atau *widget* yang bersifat konstan dan tidak akan berubah sepanjang siklus hidup aplikasi. Di *Flutter*, *widget* bersifat *immutable* yang berarti, tidak dapat diubah setelah dibuat, dan `const` memberi sinyal pada *Flutter* bahwa *widget* atau variabel yang didefinisikan tidak akan pernah berubah.
+
+    keuntungan penggunaan dari `const` adalah:
+    - **Optimalisasi Memori**: Ketika suatu *widget* atau variabel ditandai dengan `const`, *Flutter* akan menyimpan hanya satu *instance* dari *widget* tersebut di memori. Jadi, jika kita memiliki beberapa `Text("Hello")` yang ditandai `const`, *Flutter* hanya membuatnya satu kali dan menggunakan *instance* yang sama. Ini menghemat memori dan mengurangi waktu yang diperlukan untuk membuat *widget* baru.
+    - **Mengurangi *Render* Ulang**: Karena *Flutter* mengetahui bahwa *widget* `const` tidak akan berubah, *widget* tersebut tidak perlu diperiksa atau di*render* ulang, sehingga aplikasi menjadi lebih efisien.
+    - **Konsistensi**: Dengan `const`, kita dapat menjamin bahwa elemen-elemen tertentu di aplikasi tidak akan berubah karena *Flutter* akan memberi peringatan jika ada upaya untuk mengubahnya.
+
+    `const` digunakan pada widget yang kontennya tidak berubah, seperti teks yang statis, ikon tetap, atau dekorasi tertentu serta pada nilai atau variabel yang tetap sepanjang waktu. Sebaiknya `const` tidak digunakan ketika *widget* atau nilai tersebut perlu diperbarui secara dinamis berdasarkan input atau *state* pengguna, seperti dalam *list* yang interaktif atau teks yang berubah-ubah.
+
+* Jelaskan dan bandingkan penggunaan `Column` dan `Row` pada *Flutter*. Berikan contoh implementasi dari masing-masing *layout widget* ini!
+
+    Column dan Row adalah widget yang digunakan untuk menyusun elemen-elemen anaknya secara vertikal (Column) atau horizontal (Row). *Layout widget* dalam *Flutter* memiliki beberapa elemen seperti `mainAxisAlignment` dapat digunakan untuk mengatur posisi elemen-elemen dalam `Column` atau `Row`, seperti `center`, `spaceBetween`, atau `spaceAround`.
+
+    - Column: Menyusun elemen secara vertikal (dari atas ke bawah). Biasa digunakan untuk tata letak konten yang berurutan secara vertikal. Contohnya sebagai berikut:
+        ```dart
+        Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+                Text("Flutter"),
+                Text("Column Widget"),
+                Icon(Icons.star),
+            ],
+        )
+        ```
+
+    - Row: Menyusun elemen secara horizontal (dari kiri ke kanan). Digunakan ketika elemen perlu ditampilkan sejajar dalam satu baris. Contohnya sebagai berikut:
+        ```dart
+        Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+                Icon(Icons.home),
+                Icon(Icons.search),
+                Icon(Icons.settings),
+            ],
+        )
+        ```
+
+* Sebutkan apa saja elemen *input* yang kamu gunakan pada halaman *form* yang kamu buat pada tugas kali ini. Apakah terdapat elemen input *Flutter* lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+
+* Bagaimana cara kamu mengatur tema (*theme*) dalam aplikasi *Flutter* agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+* Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada *Flutter*?
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

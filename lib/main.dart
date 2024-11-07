@@ -1,4 +1,4 @@
-import 'package:dodostore_mobile/menu.dart';
+import 'package:dodostore_mobile/screens/menu.dart';
 import 'package:flutter/material.dart';
 
 void main() {
