@@ -13,7 +13,9 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _product = "";
   String _description = "";
+  int _price = 0;
   int _amount = 0;
+  String _category = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,15 +63,15 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "Amount",
-                    labelText: "Amount",
+                    hintText: "Price",
+                    labelText: "Price",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
                   onChanged: (String? value) {
                     setState(() {
-                      _amount = int.tryParse(value!) ?? 0;
+                      _price = int.tryParse(value!) ?? 0;
                     });
                   },
                   validator: (String? value) {
@@ -86,6 +88,9 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  minLines: 4,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
                   decoration: InputDecoration(
                     hintText: "description",
                     labelText: "description",
@@ -106,13 +111,62 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Amount",
+                    labelText: "Amount",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _amount = int.tryParse(value!) ?? 0;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Jumlah product tidak boleh kosong!";
+                    }
+                    if (int.tryParse(value) == null) {
+                      return "Jumlah product harus berupa angka!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "category",
+                    labelText: "Category",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _category = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Kategori product tidak boleh kosong!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
+                      backgroundColor: WidgetStateProperty.all(
                           Theme.of(context).colorScheme.primary),
                     ),
                     onPressed: () {
@@ -127,9 +181,10 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Product: $_product'),
-                                    // Munculkan value-value lainnya
-                                    Text('Amount: $_amount'),
-                                    Text('description: $_description'),
+                                    Text('Price: Rp. $_price'),
+                                    Text('Description: $_description'),
+                                    Text('Amount: $_amount pcs'),
+                                    Text('Category: $_category'),
                                   ],
                                 ),
                               ),

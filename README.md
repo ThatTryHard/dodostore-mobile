@@ -116,8 +116,10 @@
     **Elemen Input yang Digunakan**
     - `TextFormField` - Terdapat tiga `TextFormField` yang digunakan untuk menerima input dari pengguna:
         - *Product*: *Field* ini menerima nama produk. *Validator* memastikan bahwa input tidak kosong.
-        - *Amount*: *Field* ini menerima jumlah produk dalam bentuk angka. *Validator* mengecek agar *field* ini tidak kosong dan memastikan input berupa angka.
+        - *Price*: *Field* ini menerima harga produk dalam bentuk angka. *Validator* mengecek agar *field* ini tidak kosong dan memastikan input berupa angka.
         - *Description*: *Field* ini menerima deskripsi produk. *Validator* memastikan bahwa input tidak kosong.
+        - *Amount*: *Field* ini menerima jumlah produk dalam bentuk angka. *Validator* mengecek agar *field* ini tidak kosong dan memastikan input berupa angka.
+        - *Category*: *Field* ini menerima kategori produk. *Validator* memastikan bahwa input tidak kosong.
     - `ElevatedButton` - Sebuah tombol dengan label *Save* yang berfungsi untuk menyimpan data setelah semua *field* validasi terpenuhi. Ketika ditekan, tombol ini memicu validasi *form* dan menampilkan `AlertDialog` jika data berhasil disimpan.
 
     **Elemen Input Lain yang Tidak Digunakan**
