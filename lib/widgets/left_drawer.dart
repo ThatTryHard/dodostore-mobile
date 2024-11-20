@@ -1,4 +1,5 @@
 import 'package:dodostore_mobile/screens/menu.dart';
+import 'package:dodostore_mobile/screens/product_list.dart';
 import 'package:dodostore_mobile/screens/productentry_form.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,16 @@ class LeftDrawer extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => const ProductEntryFormPage(),
                 ),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.list),
+            title: const Text('Product List'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ProductPage()),
               );
             },
           ),

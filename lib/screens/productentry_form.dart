@@ -1,6 +1,5 @@
 import 'package:dodostore_mobile/widgets/left_drawer.dart';
 import 'package:flutter/material.dart';
-// Impor drawer yang sudah dibuat sebelumnya
 
 class ProductEntryFormPage extends StatefulWidget {
   const ProductEntryFormPage({super.key});
