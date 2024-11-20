@@ -187,45 +187,45 @@
 
     Model memegang peran penting dalam Flutter untuk menjalankan operasi CRUD pada data JSON, karena memungkinkan data dikelola dalam struktur yang teratur dan mudah diakses. Dengan model, pengolahan data menjadi lebih efisien melalui penggunaan metode seperti `fromJson` dan `toJson`, yang mendukung proses parsing dan serialisasi data secara terstruktur. Selain itu, model membantu memastikan validasi data dengan menjamin setiap atribut memiliki format dan tipe yang sesuai dengan kebutuhan aplikasi, sehingga meningkatkan stabilitas dan keamanan.
 
-    Tanpa menggunakan model, pengelolaan data JSON dapat menjadi sulit, terutama dalam aplikasi yang kompleks, karena struktur data yang tidak jelas berpotensi menimbulkan kesalahan *runtime*. Dengan adanya library seperti `json_serializable`, pembuatan model di Flutter menjadi lebih cepat dan mudah. Selain itu, model mempermudah integrasi dengan widget dan *state management* seperti Provider untuk menjaga konsistensi data yang ditampilkan pada antarmuka pengguna. Oleh sebab itu, model menjadi elemen krusial dalam memastikan pengelolaan data dalam aplikasi Flutter berjalan lancar.
+    Tanpa menggunakan model, pengelolaan data JSON dapat menjadi sulit, terutama dalam aplikasi yang kompleks, karena struktur data yang tidak jelas berpotensi menimbulkan kesalahan *runtime*. Dengan adanya *library* seperti `json_serializable`, pembuatan model di Flutter menjadi lebih cepat dan mudah. Selain itu, model mempermudah integrasi dengan widget dan *state management* seperti Provider untuk menjaga konsistensi data yang ditampilkan pada antarmuka pengguna. Oleh sebab itu, model menjadi elemen krusial dalam memastikan pengelolaan data dalam aplikasi Flutter berjalan lancar.
 
-* Jelaskan fungsi dari library `http` yang sudah kamu implementasikan pada tugas ini
-    Penggunaan library HTTP dalam pengembangan aplikasi sangat penting untuk memungkinkan komunikasi antara aplikasi dan server melalui protokol HTTP. Berikut adalah penjelasan penggunaannya secara rinci:
+* Jelaskan fungsi dari *library* `http` yang sudah kamu implementasikan pada tugas ini
+    Penggunaan *library* `HTTP` dalam pengembangan aplikasi sangat penting untuk memungkinkan komunikasi antara aplikasi dan server melalui protokol HTTP. Berikut adalah penjelasan penggunaannya secara rinci:
 
-    1. Mengirim Permintaan (Requests):
+    1. Mengirim Permintaan (*Requests*):
     
-        Library HTTP digunakan untuk mengirim permintaan ke server. Contoh permintaan yang sering digunakan adalah:
+        Library `HTTP` digunakan untuk mengirim permintaan ke server. Contoh permintaan yang sering digunakan adalah:
 
         * GET: Untuk mengambil data dari server, seperti daftar produk, informasi pengguna, atau berita terbaru.
         * POST: Untuk mengirimkan data ke server, seperti formulir pendaftaran, data login, atau input pengguna lainnya.
     
-    2. Mengelola Respons (Responses):
+    2. Mengelola Respons (*Responses*):
         
-        Setelah permintaan dikirim, server akan mengirimkan respons yang biasanya berisi data dalam format JSON. Library HTTP membantu menangani respons ini sehingga data dapat diolah lebih lanjut dalam aplikasi.
+        Setelah permintaan dikirim, server akan mengirimkan respons yang biasanya berisi data dalam format JSON. *Library* `HTTP` membantu menangani respons ini sehingga data dapat diolah lebih lanjut dalam aplikasi.
 
     3. Integrasi API yang Mudah:
     
-        Dengan library HTTP, integrasi aplikasi dengan berbagai layanan API menjadi lebih mudah. Misalnya, mengambil data cuaca, mengirimkan data pengguna, atau berkomunikasi dengan database melalui API REST.
+        Dengan *library* `HTTP`, integrasi aplikasi dengan berbagai layanan API menjadi lebih mudah. Misalnya, mengambil data cuaca, mengirimkan data pengguna, atau berkomunikasi dengan database melalui API REST.
 
     4. Pendukung Pengolahan Data Real-time:
 
-        Library ini memungkinkan aplikasi untuk secara dinamis berkomunikasi dengan server, memastikan data yang ditampilkan selalu mutakhir. Hal ini sangat berguna untuk aplikasi yang membutuhkan pembaruan data secara langsung, seperti aplikasi berita atau media sosial.
+        *Library* ini memungkinkan aplikasi untuk secara dinamis berkomunikasi dengan server, memastikan data yang ditampilkan selalu mutakhir. Hal ini sangat berguna untuk aplikasi yang membutuhkan pembaruan data secara langsung, seperti aplikasi berita atau media sosial.
 
     5. Manajemen Kesalahan (Error Handling):
         
-        Library HTTP mendukung penanganan kesalahan, seperti kegagalan koneksi atau respons tidak valid. Ini memastikan aplikasi dapat memberikan informasi yang tepat kepada pengguna jika terjadi masalah.
+        *Library* `HTTP` mendukung penanganan kesalahan, seperti kegagalan koneksi atau respons tidak valid. Ini memastikan aplikasi dapat memberikan informasi yang tepat kepada pengguna jika terjadi masalah.
 
-    Dengan library HTTP, pengembangan aplikasi menjadi lebih efisien, terutama dalam menangani komunikasi dengan server. Fungsionalitas ini mendukung pengelolaan data dan interaksi yang dinamis, sehingga memberikan pengalaman yang lebih baik bagi saya saat menangani tugas ini.
+    Dengan *library* `HTTP`, pengembangan aplikasi menjadi lebih efisien, terutama dalam menangani komunikasi dengan server. Fungsionalitas ini mendukung pengelolaan data dan interaksi yang dinamis, sehingga memberikan pengalaman yang lebih baik bagi saya saat menangani tugas ini.
 
 * Jelaskan fungsi dari `CookieRequest` dan jelaskan mengapa *instance* `CookieRequest` perlu untuk dibagikan ke semua komponen di aplikasi *Flutter*.
     
-    `CookieRequest` dalam Flutter berfungsi untuk mengelola sesi autentikasi dan menyimpan informasi cookie yang diterima dari server. Dengan menggunakan `CookieRequest`, aplikasi dapat mengirimkan permintaan HTTP seperti GET dan POST yang disertai dengan cookie, memastikan bahwa sesi pengguna tetap aktif dan pengguna tidak perlu login berulang kali selama menggunakan aplikasi.
+    `CookieRequest` dalam Flutter berfungsi untuk mengelola sesi autentikasi dan menyimpan informasi *cookie* yang diterima dari server. Dengan menggunakan `CookieRequest`, aplikasi dapat mengirimkan permintaan `HTTP` seperti GET dan POST yang disertai dengan *cookie*, memastikan bahwa sesi pengguna tetap aktif dan pengguna tidak perlu *login* berulang kali selama menggunakan aplikasi.
 
-    Fitur utama dari `CookieRequest` adalah kemampuannya untuk mengelola sesi pengguna dengan menyimpan data sesi yang diperoleh dari cookie. Fitur ini memastikan bahwa informasi sesi tetap konsisten di seluruh aplikasi. Selain itu, `CookieRequest` secara otomatis menyertakan cookie dalam setiap permintaan HTTP, yang memungkinkan autentikasi berjalan lancar tanpa perlu menambahkannya secara manual setiap kali. Fitur ini juga mendukung permintaan HTTP yang memerlukan autentikasi, sehingga hanya pengguna yang telah login yang dapat mengakses data atau layanan tertentu.
+    Fitur utama dari `CookieRequest` adalah kemampuannya untuk mengelola sesi pengguna dengan menyimpan data sesi yang diperoleh dari *cookie*. Fitur ini memastikan bahwa informasi sesi tetap konsisten di seluruh aplikasi. Selain itu, `CookieRequest` secara otomatis menyertakan *cookie* dalam setiap permintaan `HTTP`, yang memungkinkan autentikasi berjalan lancar tanpa perlu menambahkannya secara manual setiap kali. Fitur ini juga mendukung permintaan `HTTP` yang memerlukan autentikasi, sehingga hanya pengguna yang telah *login* yang dapat mengakses data atau layanan tertentu.
 
-    Dengan membagikan instance `CookieRequest` di seluruh aplikasi, konsistensi sesi dapat terjaga, dan komponen-komponen seperti login dan dashboard dapat mengakses informasi sesi yang sama tanpa harus membuat objek baru. Integrasi dengan state management seperti `Provider` semakin memudahkan pengelolaan sesi pengguna secara efisien dan konsisten di seluruh aplikasi.
+    Dengan membagikan *instance* `CookieRequest` di seluruh aplikasi, konsistensi sesi dapat terjaga, dan komponen-komponen seperti *login* dan dashboard dapat mengakses informasi sesi yang sama tanpa harus membuat objek baru. Integrasi dengan state management seperti `Provider` semakin memudahkan pengelolaan sesi pengguna secara efisien dan konsisten di seluruh aplikasi.
 
-* Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+* Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada *Flutter*.
     1. **Pengumpulan Data dari Pengguna**: Data diperoleh melalui elemen input seperti `TextField` atau `Form` yang memungkinkan pengguna untuk memasukkan informasi yang dibutuhkan oleh aplikasi.
 
     2. **Pemrosesan Data oleh Server**: Setelah data diterima dari aplikasi, server memprosesnya sesuai dengan fungsi yang telah ditentukan, seperti menyimpan data ke dalam database atau melakukan perhitungan tertentu.
@@ -234,9 +234,9 @@
 
     4. **Menerima dan Mengolah Respons**: Aplikasi menerima respons dari server dan memprosesnya dengan mengubahnya menjadi objek atau model yang diperlukan untuk memastikan struktur data yang konsisten dan dapat digunakan dalam aplikasi.
 
-    5. **Menampilkan Data pada Antarmuka Pengguna**: Data yang telah diproses kemudian diteruskan ke widget untuk ditampilkan kepada pengguna. Flutter secara otomatis memperbarui tampilan jika ada perubahan data, memungkinkan pengguna untuk melihat hasil input atau pemrosesan secara langsung.
+    5. **Menampilkan Data pada Antarmuka Pengguna**: Data yang telah diproses kemudian diteruskan ke widget untuk ditampilkan kepada pengguna. *Flutter* secara otomatis memperbarui tampilan jika ada perubahan data, memungkinkan pengguna untuk melihat hasil input atau pemrosesan secara langsung.
 
-* Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+* Jelaskan mekanisme autentikasi dari *login*, *register*, hingga *logout*. Mulai dari input data akun pada *Flutter* ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada *Flutter*.
  
     **Login:**
 
@@ -255,52 +255,52 @@
 
         deployment tugas django saya ke proyek ini sudah terhubung dengan baik dengan diperhatikannya kemunculan data product ketika product sudah dipilih, dan user yang terdaftar di proyek django saya.
 
-    - Mengimplementasikan fitur registrasi akun pada proyek tugas Flutter.
-        Pada proyek Flutter ini, fitur registrasi dimulai dengan pembuatan halaman registrasi yang menyediakan formulir untuk mengisi username, password, dan konfirmasi password. Formulir ini dilengkapi dengan validasi untuk memastikan bahwa setiap input tidak kosong dan bahwa password yang dimasukkan sesuai dengan konfirmasi password. Hal ini bertujuan untuk menjaga integritas data yang dimasukkan oleh pengguna sebelum dikirimkan ke server.
+    - Mengimplementasikan fitur registrasi akun pada proyek tugas *Flutter*.
+        Pada proyek *Flutter* ini, fitur registrasi dimulai dengan pembuatan halaman registrasi yang menyediakan formulir untuk mengisi username, password, dan konfirmasi password. Formulir ini dilengkapi dengan validasi untuk memastikan bahwa setiap input tidak kosong dan bahwa password yang dimasukkan sesuai dengan konfirmasi password. Hal ini bertujuan untuk menjaga integritas data yang dimasukkan oleh pengguna sebelum dikirimkan ke server.
 
-        Setelah pengguna mengisi formulir dan menekan tombol `Register`, aplikasi mengirimkan permintaan POST ke endpoint Django /auth/register/ dengan data yang dikirim dalam format JSON. Data yang dikirim meliputi username, password pertama (password1), dan password kedua (password2) menggunakan CookieRequest. Proses pengiriman ini memungkinkan data dikirimkan secara aman dengan mempertahankan konsistensi format data.
+        Setelah pengguna mengisi formulir dan menekan tombol `Register`, aplikasi mengirimkan permintaan POST ke endpoint Django `/auth/register/` dengan data yang dikirim dalam format *JSON*. Data yang dikirim meliputi *username*, password pertama (*password1*), dan autentikasi (*password2*) menggunakan `CookieRequest`. Proses pengiriman ini memungkinkan data dikirimkan secara aman dengan mempertahankan konsistensi format data.
 
-        Di backend, Django memvalidasi data yang diterima dari Flutter. Django memeriksa apakah password yang dimasukkan cocok dan memastikan bahwa username belum terdaftar di database. Jika validasi berhasil, Django membuat akun pengguna baru menggunakan metode User.objects.create_user(). Setelah akun berhasil dibuat, Django mengirimkan respons sukses dengan status 200 ke Flutter. Flutter kemudian menampilkan notifikasi sukses melalui SnackBar dan mengarahkan pengguna kembali ke halaman login menggunakan `Navigator.pushReplacement()`.
+        Di *backend*, Django memvalidasi data yang diterima dari *Flutter*. Django memeriksa apakah *password* yang dimasukkan cocok dan memastikan bahwa *username* belum terdaftar di *database*. Jika validasi berhasil, Django membuat akun pengguna baru menggunakan metode `User.objects.create_user()`. Setelah akun berhasil dibuat, Django mengirimkan respons sukses dengan status 200 ke *Flutter*. *Flutter* kemudian menampilkan notifikasi sukses melalui `SnackBar` dan mengarahkan pengguna kembali ke halaman *login* menggunakan `Navigator.pushReplacement()`.
 
-    - Membuat halaman login pada proyek tugas Flutter.
+    - Membuat halaman *login* pada proyek tugas *Flutter*.
 
-        Pada halaman login, pengguna diminta untuk memasukkan username dan password. Formulir ini juga dilengkapi dengan tombol "Login" yang akan mengirimkan permintaan POST ke endpoint /auth/login/ di Django. Data login, yaitu username dan password, dikirim dalam format JSON menggunakan CookieRequest, memungkinkan aplikasi untuk berkomunikasi dengan backend secara aman.
+        Pada halaman *login*, pengguna diminta untuk memasukkan username dan password. Formulir ini juga dilengkapi dengan tombol "Login" yang akan mengirimkan permintaan POST ke endpoint `/auth/login/` di Django. Data *login*, yaitu username dan password, dikirim dalam format JSON menggunakan CookieRequest, memungkinkan aplikasi untuk berkomunikasi dengan backend secara aman.
 
-        Django menggunakan fungsi authenticate() untuk memverifikasi username dan password yang dikirimkan. Jika kredensial valid, Django membuat sesi pengguna dengan fungsi auth_login() dan mengirimkan cookie sesi kembali ke Flutter untuk digunakan dalam permintaan autentikasi selanjutnya. Setelah login berhasil, Flutter menyimpan cookie sesi dan menampilkan pesan sukses menggunakan SnackBar. Pengguna kemudian diarahkan ke halaman utama (MyHomePage). Jika login gagal, aplikasi menampilkan dialog error menggunakan AlertDialog untuk memberi tahu pengguna bahwa login mereka tidak berhasil.
+        Django menggunakan fungsi `authenticate()` untuk memverifikasi username dan password yang dikirimkan. Jika kredensial valid, Django membuat sesi pengguna dengan fungsi `auth_login()` dan mengirimkan *cookie* sesi kembali ke *Flutter* untuk digunakan dalam permintaan autentikasi selanjutnya. Setelah login berhasil, *Flutter* menyimpan *cookie* sesi dan menampilkan pesan sukses menggunakan `SnackBar`. Pengguna kemudian diarahkan ke halaman utama (`MyHomePage`). Jika *login* gagal, aplikasi menampilkan dialog *error* menggunakan `AlertDialog` untuk memberi tahu pengguna bahwa *login* mereka tidak berhasil.
     
-    - Mengintegrasikan sistem autentikasi Django dengan proyek tugas Flutter.
+    - Mengintegrasikan sistem autentikasi Django dengan proyek tugas *Flutter*.
 
-        Sistem autentikasi Django diintegrasikan dengan aplikasi Flutter menggunakan library pbp_django_auth, yang mendukung autentikasi berbasis cookie. Library ini mempermudah Flutter dalam menyimpan dan mengelola cookie sesi yang diterima dari Django, yang digunakan untuk mengidentifikasi sesi pengguna di seluruh aplikasi.
+        Sistem autentikasi Django diintegrasikan dengan aplikasi *Flutter* menggunakan *library* `pbp_django_auth`, yang mendukung autentikasi berbasis cookie dibuat oleh tim asdos PBP. *Library* ini mempermudah *Flutter* dalam menyimpan dan mengelola *cookie* sesi yang diterima dari Django, yang digunakan untuk mengidentifikasi sesi pengguna di seluruh aplikasi.
 
-        Untuk mempermudah akses ke cookie sesi, instance CookieRequest dibagikan secara global menggunakan Provider. Hal ini memungkinkan semua komponen aplikasi Flutter untuk mengakses dan menggunakan sesi pengguna yang sama tanpa perlu membuat instance baru. Setiap permintaan HTTP yang dikirimkan dari Flutter secara otomatis menyertakan cookie sesi pengguna, memungkinkan Django untuk memverifikasi autentikasi pengguna tanpa perlu login ulang.
+        Untuk mempermudah akses ke *cookie* sesi, *instance* `CookieRequest` dibagikan secara global menggunakan `Provider`. Hal ini memungkinkan semua komponen aplikasi *Flutter* untuk mengakses dan menggunakan sesi pengguna yang sama tanpa perlu membuat *instance* baru. Setiap permintaan `HTTP` yang dikirimkan dari *Flutter* secara otomatis menyertakan *cookie* sesi pengguna, memungkinkan Django untuk memverifikasi autentikasi pengguna tanpa perlu *login* ulang.
 
     - Membuat model kustom sesuai dengan proyek aplikasi Django.
 
-        Setelah mengatur autentikasi, Flutter dapat berkomunikasi dengan API Django untuk mengambil data produk. Misalnya, untuk menampilkan daftar produk, Flutter mengirimkan permintaan GET ke endpoint API Django yang mengembalikan data dalam format JSON. Permintaan ini dilakukan menggunakan CookieRequest, yang menyertakan cookie sesi pengguna untuk memastikan autentikasi.
+        Setelah mengatur autentikasi, *Flutter* dapat berkomunikasi dengan *API* Django untuk mengambil data produk. Misalnya, untuk menampilkan daftar produk, *Flutter* mengirimkan permintaan `GET` ke endpoint *API* Django yang mengembalikan data dalam format `JSON`. Permintaan ini dilakukan menggunakan `CookieRequest`, yang menyertakan cookie sesi pengguna untuk memastikan autentikasi.
 
-        Setelah data diterima dalam format JSON, Flutter mengonversinya menjadi objek Dart menggunakan metode fromJson(). Jika data produk belum diterima, widget CircularProgressIndicator ditampilkan untuk menunjukkan bahwa data sedang dimuat. Begitu data diterima dan diproses, Flutter menggunakan ListView.builder untuk menampilkan daftar produk. Setiap item produk ditampilkan dalam bentuk widget Container, yang menampilkan informasi produk seperti nama, harga, dan deskripsi.
+        Setelah data diterima dalam format JSON, *Flutter* mengonversinya menjadi objek Dart menggunakan metode `fromJson()`. Jika data produk belum diterima, widget `CircularProgressIndicator` ditampilkan untuk menunjukkan bahwa data sedang dimuat. Begitu data diterima dan diproses, *Flutter* menggunakan `ListView.builder` untuk menampilkan daftar produk. Setiap item produk ditampilkan dalam bentuk widget Container, yang menampilkan informasi produk seperti nama, harga, deskripsi, stok, dan kategori.
 
     - Membuat halaman yang berisi daftar semua item yang terdapat pada endpoint JSON di Django yang telah kamu deploy.
         - Tampilkan name, price, dan description dari masing-masing item pada halaman ini.
 
-        Setiap produk yang ada di halaman daftar produk dapat dipilih oleh pengguna untuk melihat informasi lebih detail. Ketika pengguna menekan salah satu item produk, aplikasi menggunakan Navigator.push() untuk membuka halaman detail produk dan mengirimkan data produk yang dipilih sebagai argumen. Halaman detail ini menampilkan semua atribut produk, seperti nama, harga, deskripsi, dan jumlah stok yang tersedia. Untuk atribut image belum dapat saya implementasikan dengan sempurna.
+        Setiap produk yang ada di halaman daftar produk dapat dipilih oleh pengguna untuk melihat informasi lebih detail. Ketika pengguna menekan salah satu item produk, aplikasi menggunakan `Navigator.push()` untuk membuka halaman detail produk dan mengirimkan data produk yang dipilih sebagai argumen. Halaman detail ini menampilkan semua atribut produk, seperti nama, harga, deskripsi, dan jumlah stok yang tersedia. Untuk atribut image belum dapat saya implementasikan dengan sempurna.
 
-        Untuk menampilkan informasi dengan rapi, aplikasi menggunakan widget Text dan Padding untuk menampilkan data produk secara terstruktur. Navigasi kembali ke halaman daftar produk otomatis dilakukan dengan menggunakan Navigator.push(), memungkinkan pengguna untuk kembali ke daftar produk setelah melihat detail produk tertentu.
+        Untuk menampilkan informasi dengan rapi, aplikasi menggunakan widget Text dan Padding untuk menampilkan data produk secara terstruktur. Navigasi kembali ke halaman daftar produk otomatis dilakukan dengan menggunakan `Navigator.push()`, memungkinkan pengguna untuk kembali ke daftar produk setelah melihat detail produk tertentu.
 
     - Membuat halaman detail untuk setiap item yang terdapat pada halaman daftar Item.
         - Halaman ini dapat diakses dengan menekan salah satu item pada halaman daftar Item.
         - Tampilkan seluruh atribut pada model item kamu pada halaman ini.
         - Tambahkan tombol untuk kembali ke halaman daftar item.
     
-        Setiap produk yang ada di halaman daftar produk dapat dipilih oleh pengguna untuk melihat informasi lebih detail. Ketika pengguna menekan salah satu item produk, aplikasi menggunakan Navigator.push() untuk membuka halaman detail produk dan mengirimkan data produk yang dipilih sebagai argumen. Halaman detail ini menampilkan semua atribut produk, seperti nama, harga, deskripsi, dan jumlah stok yang tersedia.
+        Setiap produk yang ada di halaman daftar produk dapat dipilih oleh pengguna untuk melihat informasi lebih detail. Ketika pengguna menekan salah satu item produk, aplikasi menggunakan `Navigator.push()` untuk membuka halaman detail produk dan mengirimkan data produk yang dipilih sebagai argumen. Halaman detail ini menampilkan semua atribut produk, seperti nama, harga, deskripsi, dan jumlah stok yang tersedia.
 
-        Untuk menampilkan informasi dengan rapi, aplikasi menggunakan widget Text dan Padding untuk menampilkan data produk secara terstruktur. Navigasi kembali ke halaman daftar produk otomatis dilakukan dengan menggunakan Navigator.push(), memungkinkan pengguna untuk kembali ke daftar produk setelah melihat detail produk tertentu.
-        
+        Untuk menampilkan informasi dengan rapi, aplikasi menggunakan widget Text dan Padding untuk menampilkan data produk secara terstruktur. Navigasi kembali ke halaman daftar produk otomatis dilakukan dengan menggunakan `Navigator.push()`, memungkinkan pengguna untuk kembali ke daftar produk setelah melihat detail produk tertentu.
+
     - Melakukan filter pada halaman daftar item dengan hanya menampilkan item yang terasosiasi dengan pengguna yang login.
 
         Agar pengguna hanya dapat melihat produk yang terkait dengan akun mereka, Django perlu memodifikasi endpoint API untuk mengembalikan daftar produk berdasarkan pengguna yang sedang login. Pada backend Django, query difilter berdasarkan request.user, yang memastikan hanya produk yang dibuat oleh pengguna yang sedang login yang dikembalikan.
 
-        Di Flutter, saat mengambil data dari API, aplikasi hanya menerima produk yang sesuai dengan pengguna yang sedang aktif. Hal ini meningkatkan privasi dan keamanan aplikasi, serta memastikan bahwa setiap pengguna hanya melihat data yang relevan dengan mereka. Dengan cara ini, setiap pengguna memiliki pengalaman yang lebih personal dalam mengakses produk mereka.
+        Di *Flutter*, saat mengambil data dari *API*, aplikasi hanya menerima produk yang sesuai dengan pengguna yang sedang aktif. Hal ini meningkatkan privasi dan keamanan aplikasi, serta memastikan bahwa setiap pengguna hanya melihat data yang relevan dengan mereka. Dengan cara ini, setiap pengguna memiliki pengalaman yang lebih personal dalam mengakses produk mereka.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
