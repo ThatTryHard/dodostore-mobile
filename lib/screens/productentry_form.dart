@@ -1,5 +1,11 @@
-import 'package:dodostore_mobile/widgets/left_drawer.dart';
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:dodostore_mobile/screens/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ProductEntryFormPage extends StatefulWidget {
   const ProductEntryFormPage({super.key});
@@ -15,8 +21,24 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
   int _price = 0;
   int _amount = 0;
   String _category = "";
+  File? _image;
+
+  // Function to pick an image
+  Future<void> pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -24,17 +46,14 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
             'Form Tambah Product',
           ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Colors.white,
       ),
-      drawer: const LeftDrawer(),
-      // Tambahkan drawer yang sudah dibuat di sini
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Product Name Field
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -45,12 +64,8 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _product = value!;
-                    });
-                  },
-                  validator: (String? value) {
+                  onChanged: (value) => _product = value,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Nama product tidak boleh kosong!";
                     }
@@ -58,6 +73,7 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+              // Price Field
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -68,12 +84,8 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _price = int.tryParse(value!) ?? 0;
-                    });
-                  },
-                  validator: (String? value) {
+                  onChanged: (value) => _price = int.tryParse(value!) ?? 0,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Harga product tidak boleh kosong!";
                     }
@@ -84,32 +96,27 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
+              // Description Field
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  minLines: 4,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
                   decoration: InputDecoration(
-                    hintText: "description",
-                    labelText: "description",
+                    hintText: "Description",
+                    labelText: "Description",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _description = value!;
-                    });
-                  },
-                  validator: (String? value) {
+                  onChanged: (value) => _description = value,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Product description tidak boleh kosong!";
+                      return "Deskripsi product tidak boleh kosong!";
                     }
                     return null;
                   },
                 ),
               ),
+              // Stock Field
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -120,38 +127,28 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _amount = int.tryParse(value!) ?? 0;
-                    });
-                  },
-                  validator: (String? value) {
+                  onChanged: (value) => _amount = int.tryParse(value!) ?? 0,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Jumlah product tidak boleh kosong!";
-                    }
-                    if (int.tryParse(value) == null) {
-                      return "Jumlah product harus berupa angka!";
                     }
                     return null;
                   },
                 ),
               ),
+              // Category Field
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
                   decoration: InputDecoration(
-                    hintText: "category",
+                    hintText: "Category",
                     labelText: "Category",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
                     ),
                   ),
-                  onChanged: (String? value) {
-                    setState(() {
-                      _category = value!;
-                    });
-                  },
-                  validator: (String? value) {
+                  onChanged: (value) => _category = value,
+                  validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Kategori product tidak boleh kosong!";
                     }
@@ -159,53 +156,50 @@ class _ProductEntryFormPageState extends State<ProductEntryFormPage> {
                   },
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all(
-                          Theme.of(context).colorScheme.primary),
-                    ),
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: const Text('Mood berhasil tersimpan'),
-                              content: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Product: $_product'),
-                                    Text('Price: Rp. $_price'),
-                                    Text('Description: $_description'),
-                                    Text('Amount: $_amount pcs'),
-                                    Text('Category: $_category'),
-                                  ],
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _formKey.currentState!.reset();
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
+              // Image Picker
+              ElevatedButton(
+                onPressed: pickImage,
+                child: const Text("Pick Image"),
+              ),
+              // Submit Button
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      final response = await request.postJson(
+                        'http://127.0.0.1:8000/create-product-flutter/',
+                        jsonEncode(<String, String>{
+                          'name': _product,
+                          'price': _price.toString(),
+                          'description': _description,
+                          'stock': _amount.toString(),
+                          'category': _category,
+                          'image': _image.toString(),
+                        }),
+                      );
+                      if (context.mounted) {
+                        if (response['status'] == 'success') {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text("Product successfully saved!"),
+                          ));
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyHomePage()),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text("An error occurred, please try again"),
+                          ));
+                        }
                       }
-                    },
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
+                    }
+                  },
+                  child: const Text("Save"),
                 ),
               ),
             ],

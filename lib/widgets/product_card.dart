@@ -37,7 +37,7 @@ class ItemCard extends StatelessWidget {
                 builder: (context) => const ProductEntryFormPage(),
               ),
             );
-          } else if (item.name == "View Product List") {
+          } else if (item.name == "Lihat Product") {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProductPage()),

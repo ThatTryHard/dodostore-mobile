@@ -1,5 +1,6 @@
 import 'package:dodostore_mobile/models/product_entry.dart';
 import 'package:dodostore_mobile/screens/product_detail.dart';
+import 'package:dodostore_mobile/widgets/left_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,7 @@ class _ProductPageState extends State<ProductPage> {
       appBar: AppBar(
         title: const Text('Product List'),
       ),
+      drawer: const LeftDrawer(),
       body: FutureBuilder(
         future: fetchProduct(request),
         builder: (context, AsyncSnapshot snapshot) {
